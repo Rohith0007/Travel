@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymele
+af.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Display Flights</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        a {
+            text-decoration: none;
+            color: #008CBA;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Flight Number</th>
+        <th>Airlines</th>
+        <th>Departure City</th>
+        <th>Departure Time</th>
+        <th>Arrival City</th>
+        <th>Arrival Date</th>
+        <th>Journey Time</th>
+        <th>Mode</th>
+        <th>Price</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <!--/*@thymesVar id="flights" type=""*/-->
+    <tbody>
+    <tr th:each="flight:${flights}">
+        <td th:text="${flight.flightNumber}"></td>
+        <td th:text="${flight.operatingAirlines}"></td>
+        <td th:text="${flight.departureCity}"></td>
+        <td th:text="${flight.estimatedDepartureTime}"></td>
+        <td th:text="${flight.arrivalCity}"></td>
+        <td th:text="${flight.arrivalDate}"></td>
+        <td th:text="${flight.journeyTime}"></td>
+        <td th:text="${flight.mode}"></td>
+        <td th:text="${flight.price}"></td>
+        <td><a th:href="@{'/reservation/'+${flight.id}+'?mot=flight'}">Select</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

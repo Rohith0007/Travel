@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Complete Reservation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin-top: 0;
+            padding: 1em;
+            background-color: #2196F3;
+            color: white;
+            text-align: center;
+        }
+        form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 1em;
+            margin: 1em;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5em;
+        }
+        input[type="text"], input[type="email"], input[type="password"] {
+            border-radius: 5px;
+            border: none;
+            padding: 0.5em;
+            font-size: 1em;
+            margin-top: 0.5em;
+            width: 100%;
+        }
+        input[type="submit"] {
+            background-color: #2196F3;
+            color: white;
+            border-radius: 5px;
+            border: none;
+            padding: 0.5em 1em;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 1em;
+        }
+        input[type="submit"]:hover {
+            background-color: #0B7dda;
+        }
+        table {
+            border-collapse: collapse;
+            margin: 1em;
+            width: 100%;
+        }
+        th, td {
+            text-align: left;
+            padding: 0.5em;
+        }
+        th {
+            background-color: #2196F3;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h1>Complete Reservation</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Train Number</th>
+        <th>Train Name</th>
+        <th>From Station</th>
+        <th>To Station</th>
+        <th>Date of Departure</th>
+        <th>Departure Time</th>
+        <th>Arrival Time</th>
+        <th>Journey Time</th>
+        <th>Price</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--/*@thymesVar id="flights" type=""*/-->
+    <tr th:each="train:${trains}" th:class="${train.id % 2 == 0} ? 'even' : 'odd'">
+        <td th:text="${train.trainNumber}"></td>
+        <td th:text="${train.trainName}"></td>
+        <td th:text="${train.fromStation}"></td>
+        <td th:text="${train.toStation}"></td>
+        <td th:text="${train.dateOfDeparture}"></td>
+        <td th:text="${train.departureTime}"></td>
+        <td th:text="${train.arrivalTime}"></td>
+        <td th:text="${train.journeyTime}"></td>
+        <td th:text="${train.price}"></td>
+    </tr>
+    </tbody>
+</table>
+<form th:action="@{/reservation/complete-reservation}" method="post">
+    <h2>Passenger Details</h2>
+    <label>
+        First Name:
+        <input type="text" name="pFirstName" required>
+    </label>
+    <label>
+        Last Name:
+        <input type="text" name="pLastName" required>
+    </label>
+    <label>
+        Email:
+        <input type="email" name="pEmail" required>
+    </label>
+    <label>
+        Phone:
+        <input type="tel" name="pPhone" required>
+    </label>
+    <label>
+        Address:
+        <input type="text" name="pAddress" required>
+    </label>
+    <label>
+        City:
+        <input type="text" name="pCity" required>
+    </label>
+    <label>
+        State:
+        <input type="text" name="pState" required>
+    </label>
+    <label>
+        Zip Code:
+        <input type="text" name="pZipCode" required>
+    </label>
+    <h2>Payment Details</h2>
+    <label>
+        Card Type:
+        <select name="cardType" required>
+            <option value="">Select a card type</option>
+            <option value="Visa">Visa</option>
+            <option value="Mastercard">Mastercard</option>
+            <option value="American Express">American Express</option>
+            <option value="Discover">Discover</option>
+        </select>
+    </label>
+    <label>
+        Card Number:
+        <input type="text" name="cardNumber" required>
+    </label>
+    <label>
+        Expiration Date:
+        <input type="month" name="expirationDate" required>
+    </label>
+    <label>
+        CVV:
+        <input type="password" name="cvv" required>
+    </label>
+    <input type="hidden" name="trainId" th:value="${train.id}">
+    <input type="submit" value="Complete Reservation">
+</form>
+
+</body>
+</html>
