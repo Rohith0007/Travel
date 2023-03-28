@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Travel Reservation Application</title>
+    <style>
+        body {
+            background-color: #f8f8f8;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333;
+            text-align: center;
+            margin: 0;
+        }
+        h1 {
+            font-size: 36px;
+            margin: 40px 0;
+        }
+        p {
+            font-size: 18px;
+            margin: 20px 0;
+        }
+        a {
+            color: #008CBA;
+            text-decoration: none;
+            border-bottom: 2px solid #008CBA;
+            padding-bottom: 2px;
+        }
+        a:hover {
+            color: #005580;
+            border-bottom-color: #005580;
+        }
+    </style>
+</head>
+<body>
+<h1>Welcome to the Travel Reservation Application</h1>
+<p>New Users <a th:href="@{/registerUser}">click here</a> to register</p>
+<p>Existing Users <a th:href="@{/loginUser}">click here</a> to login</p>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Display Trains</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        a {
+            text-decoration: none;
+            color: #008CBA;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Train Number</th>
+        <th>Train Name</th>
+        <th>From Station</th>
+        <th>To Station</th>
+        <th>Date of Departure</th>
+        <th>Departure Time</th>
+        <th>Arrival Time</th>
+        <th>Journey Time</th>
+        <th>Price</th>
+        <th>Select</th>
+    </tr>
+    </thead>
+    <!--/*@thymesVar id="trains" type=""*/-->
+    <tbody>
+    <tr th:each="train:${trains}">
+        <td th:text="${train.trainNumber}"></td>
+        <td th:text="${train.trainName}"></td>
+        <td th:text="${train.fromStation}"></td>
+        <td th:text="${train.toStation}"></td>
+        <td th:text="${train.dateOfDeparture}"></td>
+        <td th:text="${train.departureTime}"></td>
+        <td th:text="${train.arrivalTime}"></td>
+        <td th:text="${train.journeyTime}"></td>
+        <td th:text="${train.price}"></td>
+        <td><a th:href="@{'/reservation/'+${train.id}+'?mot=train'}">Select</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

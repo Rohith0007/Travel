@@ -1,0 +1,104 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Reservation Confirmation</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--        }-->
+<!--        h1 {-->
+<!--            font-size: 24px;-->
+<!--            margin-bottom: 0;-->
+<!--        }-->
+<!--        p {-->
+<!--            font-size: 16px;-->
+<!--            margin-top: 0;-->
+<!--        }-->
+<!--        .link {-->
+<!--            color: blue;-->
+<!--            text-decoration: underline;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+<!--        .button {-->
+<!--            background-color: #008CBA;-->
+<!--            border: none;-->
+<!--            color: white;-->
+<!--            padding: 15px 32px;-->
+<!--            text-align: center;-->
+<!--            text-decoration: none;-->
+<!--            display: inline-block;-->
+<!--            font-size: 16px;-->
+<!--            margin: 4px 2px;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Reservation Confirmation</h1>-->
+<!--<hr>-->
+<!--<p th:text="${msg}"></p>-->
+<!--<hr>-->
+<!--<h2>Your train itinerary:</h2>-->
+<!--<p><strong>Train number:</strong> <span th:text="${train.trainNumber}"></span></p>-->
+<!--<p><strong>Train name:</strong> <span th:text="${train.trainName}"></span></p>-->
+<!--<p><strong>From station:</strong> <span th:text="${train.fromStation}"></span></p>-->
+<!--<p><strong>To station:</strong> <span th:text="${train.toStation}"></span></p>-->
+<!--<p><strong>Date of departure:</strong> <span th:text="${train.dateOfDeparture}"></span></p>-->
+<!--<p><strong>Departure time:</strong> <span th:text="${train.departureTime}"></span></p>-->
+<!--<p><strong>Arrival time:</strong> <span th:text="${train.arrivalTime}"></span></p>-->
+<!--<p><strong>Journey time:</strong> <span th:text="${train.journeyTime}"></span></p>-->
+<!--<p><strong>Price:</strong> <span th:text="${train.price}"></span></p>-->
+<!--<h2>PDF file path:</h2>-->
+<!--<p><a class="button" href="${pdfFileLink}" download>Download PDF</a></p>-->
+<!--<a href="http://localhost:8080/abc-airlines/login-user" class="button">Go to Login Page</a>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 0;
+        }
+        p {
+            font-size: 16px;
+            margin-top: 0;
+        }
+        .link {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<h1>Reservation Confirmation</h1>
+<hr>
+<p th:text="${msg}"></p>
+<hr>
+<h2>Your train itinerary:</h2>
+<p><strong>Train number:</strong> <span th:text="${train.trainNumber}"></span></p>
+<p><strong>Train name:</strong> <span th:text="${train.trainName}"></span></p>
+<p><strong>From station:</strong> <span th:text="${train.fromStation}"></span></p>
+<p><strong>To station:</strong> <span th:text="${train.toStation}"></span></p>
+<p><strong>Date of departure:</strong> <span th:text="${train.dateOfDeparture}"></span></p>
+<p><strong>Departure time:</strong> <span th:text="${train.departureTime}"></span></p>
+<p><strong>Arrival time:</strong> <span th:text="${train.arrivalTime}"></span></p>
+<p><strong>Journey time:</strong> <span th:text="${train.journeyTime}"></span></p>
+<p><strong>Price:</strong> <span th:text="${train.price}"></span></p>
+<h2>PDF file path:</h2>
+<p><span class="link" th:text="${filePath}" th:onclick="'window.open(\'' + ${filePath} + '\')'"></span></p>
+<!--<p><a href="${filePath}" target="${filePath}">${filePath}</a></p>-->
+<!--<p><a href="${filePath}" target="_blank">${filePath}</a></p>-->
+<!--<a href="${filePath}">Download Itinerary</a>-->
+<a href="http://localhost:8080/abc-airlines/login-user" class="button">Go to Login Page</a>
+</body>
+</html>

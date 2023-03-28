@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Complete Reservation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin-top: 0;
+            padding: 1em;
+            background-color: #2196F3;
+            color: white;
+            text-align: center;
+        }
+        form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 1em;
+            margin: 1em;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5em;
+        }
+        input[type="text"], input[type="email"], input[type="password"] {
+            border-radius: 5px;
+            border: none;
+            padding: 0.5em;
+            font-size: 1em;
+            margin-top: 0.5em;
+            width: 100%;
+        }
+        input[type="submit"] {
+            background-color: #2196F3;
+            color: white;
+            border-radius: 5px;
+            border: none;
+            padding: 0.5em 1em;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 1em;
+        }
+        input[type="submit"]:hover {
+            background-color: #0B7dda;
+        }
+        table {
+            border-collapse: collapse;
+            margin: 1em;
+            width: 100%;
+        }
+        th, td {
+            text-align: left;
+            padding: 0.5em;
+        }
+        th {
+            background-color: #2196F3;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h1>Complete Reservation</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Airlines</th>
+        <th>Departure City</th>
+        <th>Arrival City</th>
+        <th>Departure date</th>
+        <th>Estimated departure time</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--/*@thymesVar id="flights" type=""*/-->
+    <tr th:each="flight:${flights}" th:class="${flight.id % 2 == 0} ? 'even' : 'odd'">
+        <td th:text="${flight.operatingAirlines}"></td>
+        <td th:text="${flight.departureCity}"></td>
+        <td th:text="${flight.arrivalCity}"></td>
+        <td th:text="${flight.dateOfDeparture}"></td>
+        <td th:text="${flight.estimatedDepartureTime}"></td>
+    </tr>
+    </tbody>
+</table>
+<form th:action="@{/reservation/complete-reservation}" method="post">
+    <h2>Passenger Details</h2>
+    <label>
+        First Name:
+        <input type="text" name="pFirstName" required>
+    </label>
+    <label>
+        Last Name:
+        <input type="text" name="pLastName" required>
+    </label>
+    <label>
+        Email:
+        <input type="email" name="pEmail" required>
+    </label>
+    <label>
+        Phone:
+        <input type="tel" name="pPhone" required>
+    </label>
+    <label>
+        Address:
+        <input type="text" name="pAddress" required>
+    </label>
+    <label>
+        City:
+        <input type="text" name="pCity" required>
+    </label>
+    <label>
+        State:
+        <input type="text" name="pState" required>
+    </label>
+    <label>
+        Zip Code:
+        <input type="text" name="pZipCode" required>
+    </label>
+    <h2>Payment Details</h2>
+    <label>
+        Card Type:
+        <select name="cardType" required>
+            <option value="">Select a card type</option>
+            <option value="Visa">Visa</option>
+            <option value="Mastercard">Mastercard</option>
+            <option value="American Express">American Express</option>
+            <option value="Discover">Discover</option>
+        </select>
+    </label>
+    <label>
+        Card Number:
+        <input type="text" name="cardNumber" required>
+    </label>
+    <label>
+        Expiration Date:
+        <input type="month" name="expirationDate" required>
+    </label>
+    <label>
+        CVV:
+        <input type="password" name="cvv" required>
+    </label>
+    <<input type="hidden" name="flightId" th:value="${flight.id}">
+    <input type="submit" value="Complete Reservation">
+</form>
+
+</body>
+</html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="https://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Complete Reservation</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h2>Complete reservation</h2>-->
+<!--<pre>Airlines: <span th:text="${flight.operatingAirlines}"></span><br/>-->
+<!--Departure city: <span th:text="${flight.departureCity}"></span><br/>-->
+<!--Arrival city: <span th:text="${flight.arrivalCity}"></span><br/>-->
+<!--Departure date: <span th:text="${flight.dateOfDeparture}"></span><br/>-->
+<!--</pre>-->
+<!--<pre>-->
+<!--    <form th:action="@{/reservation/complete-reservation}" method="post">-->
+<!--        <h2>Passenger details</h2>-->
+<!--        First Name: <input type="text" name="pFirstName">-->
+<!--        Last Name: <input type="text" name="pLastName">-->
+<!--        Email: <input type="text" name="pEmail">-->
+<!--        Phone: <input type="text" name="pPhone">-->
+
+<!--        <h2>Card details</h2>-->
+<!--        Name: <input type="text" name="nameOnCard">-->
+<!--        Card number: <input type="text" name="cardNumber">-->
+<!--        Expiry Date: <input type="text" name="expiryDate">-->
+<!--        CVV Code: <input type="password" name="cvvNumber">-->
+
+<!--        <input type="hidden" name="flightId" th:value="${flight.id}">-->
+<!--        <input type="submit" value ="Book">-->
+<!--    </form>-->
+<!--</pre>-->
+<!--</body>-->
+<!--</html>-->

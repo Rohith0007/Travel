@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 0;
+        }
+        p {
+            font-size: 16px;
+            margin-top: 0;
+        }
+        .link {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<h1>Reservation Confirmation</h1>
+<hr>
+<p th:text="${msg}"></p>
+<hr>
+<h2>Your flight itinerary:</h2>
+<p><strong>Departure city:</strong> <span th:text="${flight.departureCity}"></span></p>
+<p><strong>Arrival city:</strong> <span th:text="${flight.arrivalCity}"></span></p>
+<p><strong>Flight number:</strong> <span th:text="${flight.flightNumber}"></span></p>
+<p><strong>Departure time:</strong> <span th:text="${flight.estimatedDepartureTime}"></span></p>
+<!--<p>Passenger Details:</p>-->
+<!--<p>First Name: <span th:text="${reservationRequest.getPassengerFirstName()}"></span></p>-->
+<!--<p>Last Name: <span th:text="${reservationRequest.getPassengerLastName()}"></span></p>-->
+<!--<p>Email: <span th:text="${reservationRequest.getPassengerEmail()}"></span></p>-->
+<!--<p>Phone: <span th:text="${reservationRequest.getPassengerPhone()}"></span></p>-->
+<h2>PDF file path:</h2>
+<p><span class="link" th:text="${filePath}" th:onclick="'window.open(\'' + ${filePath} + '\')'"></span></p>
+<!--<p><a href="${filePath}" target="${filePath}">${filePath}</a></p>-->
+<!--<p><a href="${filePath}" target="_blank">${filePath}</a></p>-->
+<!--<a href="${filePath}">Download Itinerary</a>-->
+<a href="http://localhost:8080/abc-airlines/login-user" class="button">Go to Login Page</a>
+</body>
+</html>

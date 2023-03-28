@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Find Trains | Travel Management Application</title>
+    <style>
+        /* Set margin and padding to 0 for the body */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set a fixed width for the form */
+form {
+    width: 600px;
+    margin: 0 auto;
+}
+
+/* Add some space between the form elements */
+label, select {
+    margin-right: 10px;
+}
+
+/* Set the width of the select elements to be equal */
+select {
+    width: 200px;
+}
+
+/* Add some padding to the form elements */
+label, select, input[type="submit"] {
+    padding: 5px;
+}
+
+/* Style the submit button */
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Center the h1 element */
+h1 {
+    text-align: center;
+}
+
+</style>
+</head>
+<body>
+<h1>Find Trains</h1>
+<form th:action="@{/trains}" method="post">
+    <label for="from">From:</label>
+    <select id="from" name="from">
+        <option th:each="city : ${fromCities}" th:value="${city}" th:text="${city}"></option>
+    </select>
+    <label for="to">To:</label>
+    <select id="to" name="to">
+        <option th:each="city : ${toCities}" th:value="${city}" th:text="${city}"></option>
+    </select>
+    <label for="dateOfDeparture">Departure date:</label>
+    <select id="dateOfDeparture" name="dateOfDeparture">
+        <option th:each="date : ${dates}" th:value="${date}" th:text="${date}"></option>
+    </select>
+    <input type="submit" value="Search">
+</form>
+</body>
+</html>
